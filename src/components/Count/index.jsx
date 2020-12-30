@@ -1,11 +1,4 @@
 import React, { Component } from 'react'
-import store from '../../redux/store'
-import {
-	createIncrementAction,
-	createDecrementAction,
-	createIncrementAsyncAction
-} from '../../redux/count_action'
-import axios from 'axios'
 
 export default class Count extends Component {
 	state = {
@@ -15,43 +8,29 @@ export default class Count extends Component {
 	increment = ()=>{
 		//获取用户选择的数字
 		const {value} = this.numberNode
-		//通知redux加
-		store.dispatch(createIncrementAction(value*1))
+		
 	}
 
 	decrement = ()=>{
 		//获取用户选择的数字
 		const {value} = this.numberNode
-		//通知redux减
-		store.dispatch(createDecrementAction(value*1))
 	}
 
 	incrementIfOdd = ()=>{
 		//获取用户选择的数字
 		const {value} = this.numberNode
-		if(store.getState() % 2 !== 0){
-			store.dispatch(createIncrementAction(value*1))
-		}
 	}
 
 	incrementAsync = ()=>{
 		//获取用户选择的数字
 		const {value} = this.numberNode
-
-		//靠组件自己执行异步任务
-		/* setTimeout(()=>{
-			store.dispatch(createIncrementAction(value*1))
-		},500) */
-
-		store.dispatch(createIncrementAsyncAction(value*1,500))
-
 	}
 
-
 	render() {
+		console.log('Count的UI收到的props是',this.props)
 		return (
 			<div>
-				<h2>当前求和为：{store.getState()}</h2>
+				<h2>当前求和为：????</h2>
 				<div>今天：{this.state.wind}</div>
 				<select ref={c => this.numberNode = c}>
 					<option value="1">1</option>
