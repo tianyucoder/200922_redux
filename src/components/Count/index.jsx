@@ -9,25 +9,31 @@ export default class Count extends Component {
 	increment = ()=>{
 		//获取用户选择的数字
 		const {value} = this.numberNode
-		//准备一个action对象
-		const action = {type:'increment',data:value*1}
-		//分发这个action
-		store.dispatch(action)
+		//通知redux加
+		store.dispatch({type:'increment',data:value*1})
 	}
 
 	decrement = ()=>{
 		//获取用户选择的数字
 		const {value} = this.numberNode
+		//通知redux减
+		store.dispatch({type:'decrement',data:value*1})
 	}
 
 	incrementIfOdd = ()=>{
 		//获取用户选择的数字
 		const {value} = this.numberNode
+		if(store.getState() % 2 !== 0){
+			store.dispatch({type:'increment',data:value*1})
+		}
 	}
 
 	incrementAsync = ()=>{
 		//获取用户选择的数字
 		const {value} = this.numberNode
+		setTimeout(()=>{
+			store.dispatch({type:'increment',data:value*1})
+		},500)
 	}
 
 

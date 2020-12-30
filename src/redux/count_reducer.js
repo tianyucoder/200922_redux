@@ -2,7 +2,7 @@
 
 //reducer可以：初始化状态、加工状态
 export default function countReducer(preState=0,action){
-	console.log('countReducer执行了',preState,action)
+	// console.log('countReducer执行了',preState,action)
 	//从action对象中获取type、data
 	const {type,data} = action
 
@@ -10,7 +10,7 @@ export default function countReducer(preState=0,action){
 	switch (type) {
 		case 'increment': //如果是加
 			return preState + data
-		case 'decrement': //如果是加
+		case 'decrement': //如果是减
 			return preState - data
 		default: //不是加，也不是减，那么就是初始化
 			return preState
