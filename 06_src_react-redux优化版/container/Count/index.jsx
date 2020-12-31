@@ -1,6 +1,13 @@
-import React, { Component } from 'react'
+import React,{Component} from 'react'
+import {
+	createIncrementAction,
+	createDecrementAction,
+	createIncrementAsyncAction
+} from '../../redux/count_action'
+import {connect} from 'react-redux'
 
-export default class Count extends Component {
+//定义Count的UI组件
+class Count extends Component {
 	state = {
 		wind:'北风6级'
 	}
@@ -52,3 +59,27 @@ export default class Count extends Component {
 		)
 	}
 }
+
+//普通写法
+/* const mapDispatchToProps = dispatch => ({
+	jia: value => dispatch(createIncrementAction(value)),
+	jian: value => dispatch(createDecrementAction(value)),
+	jiaAsync: (value,time) => dispatch(createIncrementAsyncAction(value,time))
+}) */
+
+//精简写法
+/* const mapDispatchToProps = {
+	jia:createIncrementAction,
+	jian:createDecrementAction,
+	jiaAsync:createIncrementAsyncAction
+} */
+
+export default connect(
+	state => ({sum:state}), //映射状态
+	//映射操作状态的方法
+	{
+		jia:createIncrementAction,
+		jian:createDecrementAction,
+		jiaAsync:createIncrementAsyncAction
+	}
+)(Count)
