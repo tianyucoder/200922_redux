@@ -2,10 +2,7 @@
 
 //引入createStore函数，用于创建store对象
 import {createStore,applyMiddleware} from 'redux'
-//引入combineReducers，用于组合多个reducer
 import {combineReducers} from 'redux'
-//引入composeWithDevTools，用于支持开发者工具的使用
-import {composeWithDevTools} from 'redux-devtools-extension'
 
 //引入为了Count组件服务的reducer
 import countReducer from './reducers/count'
@@ -22,4 +19,4 @@ const allReducer = combineReducers({
 })
 
 //创建并暴露一个store对象
-export default createStore(allReducer,composeWithDevTools(applyMiddleware(thunk)))
+export default createStore(allReducer,applyMiddleware(thunk))
