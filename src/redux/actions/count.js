@@ -3,21 +3,21 @@
 import {DECREMENT, INCREMENT} from '../constant'
 
 //创建加的action对象
-export const createIncrementAction = value => {
+export const increment = value => {
 	return {type:INCREMENT,data:value}
 }
 
-export const createDecrementAction = value => {
+export const decrement = value => {
 	return {type:DECREMENT,data:value}
 }
 
 /* 
 	异步action中通常会开启异步任务，异步任务有结果后，通常会调用dispatch去分发一个同步action
 */
-export const createIncrementAsyncAction = (value,time) => {
+export const incrementAsync = (value,time) => {
 	return (dispatch)=>{
 		setTimeout(()=>{
-			dispatch(createIncrementAction(value))
+			dispatch(increment(value))
 		},time)
 	}
 }

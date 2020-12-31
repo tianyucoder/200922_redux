@@ -1,8 +1,8 @@
 import React,{Component} from 'react'
 import {
-	createIncrementAction,
-	createDecrementAction,
-	createIncrementAsyncAction
+	increment,
+	decrement,
+	incrementAsync
 } from '../../redux/actions/count'
 import {connect} from 'react-redux'
 
@@ -16,28 +16,28 @@ class Count extends Component {
 		//获取用户选择的数字
 		const {value} = this.numberNode
 		//调用父组件传递过来的操作状态的方法
-		this.props.jia(value*1)
+		this.props.increment(value*1)
 	}
 
 	decrement = ()=>{
 		//获取用户选择的数字
 		const {value} = this.numberNode
 		//调用父组件传递过来的操作状态的方法
-		this.props.jian(value*1)
+		this.props.decrement(value*1)
 	}
 
 	incrementIfOdd = ()=>{
 		//获取用户选择的数字
 		const {value} = this.numberNode
 		if(this.props.sum % 2 !== 0){
-			this.props.jia(value*1)
+			this.props.increment(value*1)
 		}
 	}
 
 	incrementAsync = ()=>{
 		//获取用户选择的数字
 		const {value} = this.numberNode
-		this.props.jiaAsync(value*1,500)
+		this.props.incrementAsync(value*1,500)
 	}
 
 	render() {
@@ -45,7 +45,7 @@ class Count extends Component {
 		return (
 			<div>
 				<h1>我是Count组件</h1>
-				<h2>当前求和为：{this.props.sum},下面的总人数为：{this.props.renshu}</h2>
+				<h2>当前求和为：{this.props.sum},下面的总人数为：{this.props.totalPerson}</h2>
 				<div>今天：{this.state.wind}</div>
 				<select ref={c => this.numberNode = c}>
 					<option value="1">1</option>
@@ -61,29 +61,11 @@ class Count extends Component {
 	}
 }
 
-//普通写法
-/* const mapDispatchToProps = dispatch => ({
-	jia: value => dispatch(createIncrementAction(value)),
-	jian: value => dispatch(createDecrementAction(value)),
-	jiaAsync: (value,time) => dispatch(createIncrementAsyncAction(value,time))
-}) */
-
-//精简写法
-/* const mapDispatchToProps = {
-	jia:createIncrementAction,
-	jian:createDecrementAction,
-	jiaAsync:createIncrementAsyncAction
-} */
-
 export default connect(
 	state => ({
-		sum:state.he,
-		renshu:state.rens.length
+		sum:state.sum,
+		totalPerson:state.persons.length
 	}), //映射状态
 	//映射操作状态的方法
-	{
-		jia:createIncrementAction,
-		jian:createDecrementAction,
-		jiaAsync:createIncrementAsyncAction
-	}
+	{increment,decrement,incrementAsync}
 )(Count)

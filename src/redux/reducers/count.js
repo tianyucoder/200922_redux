@@ -4,7 +4,6 @@ import {INCREMENT,DECREMENT} from '../constant'
 
 //reducer可以：初始化状态、加工状态
 export default function countReducer(preState=666,action){
-	// console.log('@@@@@@@@######%%%%%%')
 	//从action对象中获取type、data
 	const {type,data} = action
 

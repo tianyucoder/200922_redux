@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {createAddPersonAction} from '../../redux/actions/person'
+import {addPerson} from '../../redux/actions/person'
 
 class Person extends Component {
 	state = {
@@ -11,7 +11,7 @@ class Person extends Component {
 	addPerson = ()=>{
 		//获取用户的输入
 		const {name,age} = this.state
-		this.props.jiayiren({name,age})
+		this.props.addPerson({name,age})
 		
 	}
 
@@ -27,7 +27,7 @@ class Person extends Component {
 				<button onClick={this.addPerson}>添加</button>
 				<ul>
 					{
-						this.props.yiduiren.map((personObj,index)=>{
+						this.props.persons.map((personObj,index)=>{
 							return <li key={index}>{personObj.name}---{personObj.age}</li>
 						})
 					}
@@ -39,10 +39,8 @@ class Person extends Component {
 
 export default connect(
 	state => ({
-		sum:state.he,
-		yiduiren:state.rens
+		sum:state.sum,
+		persons:state.persons
 	}),
-	{
-		jiayiren:createAddPersonAction
-	}
+	{addPerson}
 )(Person)
