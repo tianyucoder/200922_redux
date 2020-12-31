@@ -76,7 +76,10 @@ class Count extends Component {
 } */
 
 export default connect(
-	state => ({sum:state}), //映射状态
+	state => {
+		console.log('%*%*%*%*%*%*%',state)
+		return {sum:state.he}
+	}, //映射状态
 	//映射操作状态的方法
 	{
 		jia:createIncrementAction,
