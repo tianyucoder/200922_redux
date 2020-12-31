@@ -3,7 +3,7 @@ import {
 	createIncrementAction,
 	createDecrementAction,
 	createIncrementAsyncAction
-} from '../../redux/count_action'
+} from '../../redux/actions/count'
 import {connect} from 'react-redux'
 
 //定义Count的UI组件
@@ -44,6 +44,7 @@ class Count extends Component {
 		// console.log('Count的UI收到的props是',this.props)
 		return (
 			<div>
+				<h1>我是Count组件</h1>
 				<h2>当前求和为：{this.props.sum}</h2>
 				<div>今天：{this.state.wind}</div>
 				<select ref={c => this.numberNode = c}>

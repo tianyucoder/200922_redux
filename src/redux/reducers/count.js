@@ -1,6 +1,6 @@
 //该文件是定义为Count组件服务器的reducer
 //引入常量模块
-import {INCREMENT,DECREMENT} from './constant'
+import {INCREMENT,DECREMENT} from '../constant'
 
 //reducer可以：初始化状态、加工状态
 export default function countReducer(preState=666,action){
