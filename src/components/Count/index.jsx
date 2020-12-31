@@ -8,7 +8,7 @@ export default class Count extends Component {
 	increment = ()=>{
 		//获取用户选择的数字
 		const {value} = this.numberNode
-		
+		this.props.jia(value*1)
 	}
 
 	decrement = ()=>{
@@ -30,7 +30,7 @@ export default class Count extends Component {
 		console.log('Count的UI收到的props是',this.props)
 		return (
 			<div>
-				<h2>当前求和为：????</h2>
+				<h2>当前求和为：{this.props.sum}</h2>
 				<div>今天：{this.state.wind}</div>
 				<select ref={c => this.numberNode = c}>
 					<option value="1">1</option>
